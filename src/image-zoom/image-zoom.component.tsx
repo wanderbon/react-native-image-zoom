@@ -299,6 +299,8 @@ export default class ImageViewer extends React.Component<Props, State> {
             this.rotate -= angleRotate;
           } else if((this.rotate < 0 || this.rotate > 0) && angleRotate > 0) {
             this.rotate += angleRotate;
+          } else {
+            this.rotate += angleRotate;
           }
           
           this.animatedRotate.setValue(this.rotate);
