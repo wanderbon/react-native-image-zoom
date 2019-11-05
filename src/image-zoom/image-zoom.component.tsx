@@ -300,8 +300,9 @@ export default class ImageViewer extends React.Component<Props, State> {
           } else if((this.rotate < 0 || this.rotate > 0) && angleRotate > 0) {
             this.rotate += angleRotate;
           }
+          
           this.rotate = angleRotate + this.rotate;
-          this.animatedRotate.setValue(angleRotate);
+          this.animatedRotate.setValue(this.rotate);
 
           if (this.props.pinchToZoom) {
             let minX: number;
