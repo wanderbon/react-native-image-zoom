@@ -362,7 +362,7 @@ export default class ImageViewer extends React.Component<Props, State> {
             clearTimeout(this.longPressTimeout);
           }
 
-          console.log(evt, gestureState);
+          console.log(evt.nativeEvent, gestureState);
 
           if (this.props.pinchToZoom) {
             // 找最小的 x 和最大的 x
