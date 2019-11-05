@@ -296,7 +296,7 @@ export default class ImageViewer extends React.Component<Props, State> {
           let startRotateY: number = evt.nativeEvent.changedTouches[0].locationY;
           let endRotateY: number = evt.nativeEvent.changedTouches[1].locationY;
 
-          const angleRotate = Math.atan2(endRotateY - startRotateY, endRotateX - startRotateX);
+          const angleRotate = Math.atan2(endRotateY - startRotateY, endRotateX - startRotateX) * 180 / Math.PI;
           console.warn(angleRotate);
           this.animatedRotate.setValue(angleRotate);
 
@@ -563,7 +563,7 @@ export default class ImageViewer extends React.Component<Props, State> {
           translateY: this.animatedPositionY
         },
         {
-          rotate: this.animatedRotate.interpolate({inputRange: [-200, 0, 200], outputRange: ["-200rad", "0rad", "200rad"]})
+          rotate: this.animatedRotate.interpolate({inputRange: [-200, 0, 200], outputRange: ["-30deg", "0deg", "30deg"]})
         }
       ]
     };
