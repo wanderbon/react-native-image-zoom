@@ -290,27 +290,13 @@ export default class ImageViewer extends React.Component<Props, State> {
             clearTimeout(this.longPressTimeout);
           }
 
-          let minRotateX: number;
-          let maxRotateX: number;
-          if (evt.nativeEvent.changedTouches[0].locationX > evt.nativeEvent.changedTouches[1].locationX) {
-            minRotateX = evt.nativeEvent.changedTouches[1].pageX;
-            maxRotateX = evt.nativeEvent.changedTouches[0].pageX;
-          } else {
-            minRotateX = evt.nativeEvent.changedTouches[0].pageX;
-            maxRotateX = evt.nativeEvent.changedTouches[1].pageX;
-          }
+          let startRotateX: number = evt.nativeEvent.changedTouches[0].locationX;
+          let endRotateX: number = evt.nativeEvent.changedTouches[1].locationX;
 
-          let minRotateY: number;
-          let maxRotateY: number;
-          if (evt.nativeEvent.changedTouches[0].locationY > evt.nativeEvent.changedTouches[1].locationY) {
-            minRotateY = evt.nativeEvent.changedTouches[1].pageY;
-            maxRotateY = evt.nativeEvent.changedTouches[0].pageY;
-          } else {
-            minRotateY = evt.nativeEvent.changedTouches[0].pageY;
-            maxRotateY = evt.nativeEvent.changedTouches[1].pageY;
-          }
+          let startRotateY: number = evt.nativeEvent.changedTouches[0].locationY;
+          let endRotateY: number = evt.nativeEvent.changedTouches[1].locationY;
 
-          const angleRotate = Math.atan2(maxRotateY - minRotateY, maxRotateX - minRotateX);
+          const angleRotate = Math.atan2(endRotateY - startRotateY, endRotateX - startRotateX);
           console.warn(angleRotate);
           this.animatedRotate.setValue(angleRotate);
 
@@ -577,7 +563,7 @@ export default class ImageViewer extends React.Component<Props, State> {
           translateY: this.animatedPositionY
         },
         {
-          rotate: this.animatedRotate.interpolate({inputRange: [-200, 0, 200], outputRange: ["-30deg", "0deg", "30deg"]})
+          rotate: this.animatedRotate.interpolate({inputRange: [-200, 0, 200], outputRange: ["-200rad", "0rad", "200rad"]})
         }
       ]
     };
