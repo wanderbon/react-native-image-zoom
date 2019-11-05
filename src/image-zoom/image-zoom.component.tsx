@@ -32,6 +32,11 @@ export default class ImageViewer extends React.Component<Props, State> {
   private zoomLastDistance: number | null = null;
   private zoomCurrentDistance = 0;
 
+  // rotate
+  private rotate = 0;
+  private animatedRotate = new Animated.Value(0);
+  private lastRotate: number | null = null;
+
   // 图片手势处理
   private imagePanResponder: PanResponderInstance | null = null;
 
@@ -356,6 +361,8 @@ export default class ImageViewer extends React.Component<Props, State> {
           if (this.longPressTimeout) {
             clearTimeout(this.longPressTimeout);
           }
+
+          console.log(evt, gestureState);
 
           if (this.props.pinchToZoom) {
             // 找最小的 x 和最大的 x
