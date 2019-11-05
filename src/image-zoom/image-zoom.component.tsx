@@ -311,6 +311,7 @@ export default class ImageViewer extends React.Component<Props, State> {
           }
 
           const angleRotate = Math.atan2(maxRotateY - minRotateY, maxRotateX - minRotateX);
+          console.warn(angleRotate);
           this.animatedRotate.setValue(angleRotate);
 
           if (this.props.pinchToZoom) {
