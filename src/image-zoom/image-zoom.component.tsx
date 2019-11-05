@@ -290,13 +290,16 @@ export default class ImageViewer extends React.Component<Props, State> {
             clearTimeout(this.longPressTimeout);
           }
 
-          let startRotateX: number = evt.nativeEvent.changedTouches[0].locationX;
-          let endRotateX: number = evt.nativeEvent.changedTouches[1].locationX;
+          let deltaX: number = evt.nativeEvent.changedTouches[0].locationX - evt.nativeEvent.changedTouches[1].locationX;
+          let deltaY: number = evt.nativeEvent.changedTouches[0].locationY - evt.nativeEvent.changedTouches[1].locationY;
 
-          let startRotateY: number = evt.nativeEvent.changedTouches[0].locationY;
-          let endRotateY: number = evt.nativeEvent.changedTouches[1].locationY;
+          const angleRotate = Math.atan2(deltaY, deltaX) * 180 / Math.PI;
 
-          const angleRotate = Math.atan2(endRotateY - startRotateY, endRotateX - startRotateX) * 180 / Math.PI;
+          if((this.rotate < 0 || this.rotate > 0) && angleRotate < 0) {
+            this.rotate -= angleRotate;
+          } else if((this.rotate < 0 || this.rotate > 0) && angleRotate > 0) {
+            this.rotate += angleRotate;
+          }
           this.rotate = angleRotate + this.rotate;
           this.animatedRotate.setValue(angleRotate);
 
