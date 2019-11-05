@@ -301,7 +301,6 @@ export default class ImageViewer extends React.Component<Props, State> {
             this.rotate += angleRotate;
           }
           
-          this.rotate = angleRotate + this.rotate;
           this.animatedRotate.setValue(this.rotate);
 
           if (this.props.pinchToZoom) {
