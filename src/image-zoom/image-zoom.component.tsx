@@ -649,6 +649,9 @@ export default class ImageViewer extends React.Component<Props, State> {
         },
         {
           translateY: this.animatedPositionY
+        },
+        {
+          rotate: this.animatedPositionX.interpolate({inputRange: [-200, 0, 200], outputRange: ["-30deg", "0deg", "30deg"]})
         }
       ]
     };
