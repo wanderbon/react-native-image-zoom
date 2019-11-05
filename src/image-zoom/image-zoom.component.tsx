@@ -297,7 +297,7 @@ export default class ImageViewer extends React.Component<Props, State> {
           let endRotateY: number = evt.nativeEvent.changedTouches[1].locationY;
 
           const angleRotate = Math.atan2(endRotateY - startRotateY, endRotateX - startRotateX) * 180 / Math.PI;
-          console.warn(angleRotate);
+          this.rotate = angleRotate + this.rotate;
           this.animatedRotate.setValue(angleRotate);
 
           if (this.props.pinchToZoom) {
@@ -563,7 +563,7 @@ export default class ImageViewer extends React.Component<Props, State> {
           translateY: this.animatedPositionY
         },
         {
-          rotate: this.animatedRotate.interpolate({inputRange: [-200, 0, 200], outputRange: ["-30deg", "0deg", "30deg"]})
+          rotate: this.animatedRotate.interpolate({inputRange: [-180, 0, 180], outputRange: ["-180deg", "0deg", "180deg"]})
         }
       ]
     };
